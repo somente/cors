@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Proxy</title>
+</head>
+<body>
+    <h1>CORS Proxy</h1>
+    <p>Use este proxy para fazer solicitações bypassando as restrições CORS.</p>
+
+    <script>
+        async function proxyRequest(url) {
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Erro ao fazer a requisição:', error);
+            }
+        }
+
+        // Exemplo de uso
+        proxyRequest('https://api.exemplo.com/dados');
+    </script>
+</body>
+</html>
